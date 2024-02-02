@@ -32,6 +32,7 @@
 
 #ifdef HAVE_FCNTL_H
 #include <fcntl.h>
+#  include <io.h>
 #endif /* HAVE_FCNTL_H */
 
 #ifdef HAVE_UNISTD_H
@@ -108,7 +109,7 @@ struct json_object *json_object_from_fd_ex(int fd, int in_depth)
 		return NULL;
 	}
 
-	while ((ret = read(fd, buf, JSON_FILE_BUF_SIZE)) > 0)
+	while ((ret = _read(fd, buf, JSON_FILE_BUF_SIZE)) > 0)
 	{
 		printbuf_memappend(pb, buf, ret);
 	}
@@ -136,7 +137,7 @@ struct json_object *json_object_from_file(const char *filename)
 	struct json_object *obj;
 	int fd;
 
-	if ((fd = open(filename, O_RDONLY)) < 0)
+	if ((fd = _open(filename, O_RDONLY)) < 0)
 	{
 		_json_c_set_last_err("json_object_from_file: error opening file %s: %s\n", filename,
 		                     strerror(errno));

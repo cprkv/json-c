@@ -16,6 +16,7 @@
 #include "json-c/json.h"
 #include "json-c/json_object_iterator.h"
 #include "json_object_private.h"
+#include "debug.h"
 
 /**
  * How It Works
