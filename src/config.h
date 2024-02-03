@@ -15,64 +15,129 @@
 /* #undef HAS_GNU_WARNING_LONG */
 
 /* Define to 1 if you have the <dlfcn.h> header file. */
-/* #undef HAVE_DLFCN_H */
+#if __has_include(<dlfcn.h>)
+#define HAVE_DLFCN_H 1
+#endif
+
 
 /* Define to 1 if you have the <endian.h> header file. */
-/* #undef HAVE_ENDIAN_H */
+#if __has_include(<endian.h>)
+#define HAVE_ENDIAN_H 1
+#endif
+
 
 /* Define to 1 if you have the <fcntl.h> header file. */
-#define HAVE_FCNTL_H
+#if __has_include(<fcntl.h>)
+#define HAVE_FCNTL_H 1
+#endif
+
+
+#if __has_include(<io.h>)
+#define HAVE_IO_H 1
+#endif
+
 
 /* Define to 1 if you have the <inttypes.h> header file. */
-#define HAVE_INTTYPES_H
+#if __has_include(<inttypes.h>)
+#define HAVE_INTTYPES_H 1
+#endif
+
 
 /* Define to 1 if you have the <limits.h> header file. */
-#define HAVE_LIMITS_H
+#if __has_include(<limits.h>)
+#define HAVE_LIMITS_H 1
+#endif
+
 
 /* Define to 1 if you have the <locale.h> header file. */
-#define HAVE_LOCALE_H
+#if __has_include(<locale.h>)
+#define HAVE_LOCALE_H 1
+#endif
+
 
 /* Define to 1 if you have the <memory.h> header file. */
-#define HAVE_MEMORY_H
+#if __has_include(<memory.h>)
+#define HAVE_MEMORY_H 1
+#endif
+
 
 /* Define to 1 if you have the <stdarg.h> header file. */
-#define HAVE_STDARG_H
+#if __has_include(<stdarg.h>)
+#define HAVE_STDARG_H 1
+#endif
+
 
 /* Define to 1 if you have the <stdint.h> header file. */
-#define HAVE_STDINT_H
+#if __has_include(<stdint.h>)
+#define HAVE_STDINT_H 1
+#endif
+
 
 /* Define to 1 if you have the <stdlib.h> header file. */
-#define HAVE_STDLIB_H
+#if __has_include(<stdlib.h>)
+#define HAVE_STDLIB_H 1
+#endif
+
 
 /* Define to 1 if you have the <strings.h> header file. */
-/* #undef HAVE_STRINGS_H */
+#if __has_include(<strings.h>)
+#define HAVE_STRINGS_H 1
+#endif
+
 
 /* Define to 1 if you have the <string.h> header file. */
-#define HAVE_STRING_H
+#if __has_include(<string.h>)
+#define HAVE_STRING_H 1
+#endif
+
 
 /* Define to 1 if you have the <syslog.h> header file. */
-/* #undef HAVE_SYSLOG_H */
+#if __has_include(<syslog.h>)
+#define HAVE_SYSLOG_H 1
+#endif
+
 
 /* Define to 1 if you have the <sys/cdefs.h> header file. */
-/* #undef HAVE_SYS_CDEFS_H */
+#if __has_include(<sys/cdefs.h>)
+#define HAVE_SYS_CDEFS_H 1
+#endif
+
 
 /* Define to 1 if you have the <sys/param.h> header file. */
-/* #undef HAVE_SYS_PARAM_H */
+#if __has_include(<sys/param.h>)
+#define HAVE_SYS_PARAM_H 1
+#endif
+
 
 /* Define to 1 if you have the <sys/resource.h> header file. */
-/* #undef HAVE_SYS_RESOURCE_H */
+#if __has_include(<sys/resource.h>)
+#define HAVE_SYS_RESOURCE_H 1
+#endif
+
 
 /* Define to 1 if you have the <sys/stat.h> header file. */
-#define HAVE_SYS_STAT_H
+#if __has_include(<sys/stat.h>)
+#define HAVE_SYS_STAT_H 1
+#endif
+
 
 /* Define to 1 if you have the <sys/types.h> header file. */
-#define HAVE_SYS_TYPES_H 1
+#if __has_include(<sys/types.h>)
+#define HAVE_SYS_TYPES_H 1 1
+#endif
+
 
 /* Define to 1 if you have the <unistd.h> header file. */
-/* #undef HAVE_UNISTD_H */
+#if __has_include(<unistd.h>)
+#define HAVE_UNISTD_H 1
+#endif
+
 
 /* Define to 1 if you have the <xlocale.h> header file. */
-/* #undef HAVE_XLOCALE_H */
+#if __has_include(<xlocale.h>)
+#define HAVE_XLOCALE_H 1
+#endif
+
 
 /* Define to 1 if you don't have `vprintf' but do have `_doprnt.' */
 /* #undef HAVE_DOPRNT */
@@ -113,7 +178,7 @@
 #define HAVE_SETLOCALE
 
 /* Define to 1 if you have the `snprintf' function. */
-/* #undef HAVE_SNPRINTF */
+#define HAVE_SNPRINTF
 
 
 /* Define to 1 if you have the `strcasecmp' function. */
@@ -205,3 +270,11 @@
 
 /* Define to `unsigned int' if <sys/types.h> does not define. */
 /* #undef size_t */
+
+#ifdef _WIN32
+#define jsonc_os_read _read
+#define jsonc_os_open _open
+#else
+#define jsonc_os_read read
+#define jsonc_os_open open
+#endif
